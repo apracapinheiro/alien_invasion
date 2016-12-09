@@ -5,7 +5,10 @@ from time import sleep
 
 import pygame
 from bullet import Bullet
-from alien import Alien
+from alien import Alien, Alien2, Alien3
+
+
+
 
 
 def check_keydown_events(event, ai_settings, screen, ship, bullets):
@@ -15,6 +18,7 @@ def check_keydown_events(event, ai_settings, screen, ship, bullets):
     :param ship:
     :return:
     """
+    pause = False
     if event.key == pygame.K_RIGHT:
         # Move a nave para a direita
         ship.moving_right = True
@@ -25,6 +29,8 @@ def check_keydown_events(event, ai_settings, screen, ship, bullets):
         fire_bullet(ai_settings, screen, ship, bullets)
     elif event.key == pygame.K_q:
         sys.exit()
+    elif event.key == pygame.K_p:
+        pygame.time.delay(2000)
 
 
 def check_keyup_events(event, ship):
@@ -137,7 +143,9 @@ def check_bullet_alien_collisions(ai_settings, screen, stats, sb, ship, aliens, 
 
     if collisions:
         for aliens in collisions.values():
-            stats.score += ai_settings.alien_points * len(aliens)
+            # stats.score += ai_settings.alien_points * len(aliens)
+            # stats.score += ai_settings.alien_points
+            stats.score += aliens[0].pontuacao * ai_settings.score_scale
             sb.prep_score()
         check_high_score(stats, sb)
 
@@ -171,6 +179,7 @@ def update_bullets(ai_settings, screen, stats, sb, ship, aliens, bullets):
     check_bullet_alien_collisions(ai_settings, screen, stats, sb, ship, aliens, bullets)
 #   print(len(bullets))
 
+
 def fire_bullet(ai_settings, screen, ship, bullets):
     """
     Dispara um projétil se o limite ainda não foi alcançado
@@ -199,11 +208,27 @@ def create_fleet(ai_settings, screen, ship, aliens):
     number_aliens_x = get_number_aliens_x(ai_settings, alien.rect.width)
     number_rows = get_number_rows(ai_settings, ship.rect.height, alien.rect.height)
 
+    alien2 = Alien2(ai_settings, screen)
+    number_aliens_x2 = get_number_aliens_x(ai_settings, alien2.rect.width)
+    number_rows2 = get_number_rows(ai_settings, ship.rect.height, alien2.rect.height)
 
-    # Cria a primeira linha de alienígenas
+    alien3 = Alien3(ai_settings, screen)
+    number_aliens_x3 = get_number_aliens_x(ai_settings, alien3.rect.width)
+    number_rows3 = get_number_rows(ai_settings, ship.rect.height, alien3.rect.height)
+
+    # Cria a primeira linha de alienígenas 1
     for row_number in range(number_rows):
         for alien_number in range(number_aliens_x):
-            create_alien(ai_settings, screen, aliens, alien_number, row_number)
+            create_alien(ai_settings, screen, aliens, alien_number, 0, 1)
+            # create_alien(ai_settings, screen, aliens, alien_number, row_number, 1)
+
+    for row_number in range(number_rows2):
+        for alien_number in range(number_aliens_x2):
+            create_alien(ai_settings, screen, aliens, alien_number, 1, 2)
+
+    for row_number in range(number_rows3):
+        for alien_number in range(number_aliens_x3):
+            create_alien(ai_settings, screen, aliens, alien_number, 2, 3)
 
 
 def get_number_aliens_x(ai_settings, alien_width):
@@ -219,9 +244,15 @@ def get_number_aliens_x(ai_settings, alien_width):
     return number_aliens_x
 
 
-def create_alien(ai_settings, screen, aliens, alien_number, row_number):
+def create_alien(ai_settings, screen, aliens, alien_number, row_number, tipo_alien):
     # Cria um alienígena e o posiciona na linha
-    alien = Alien(ai_settings, screen)
+    if tipo_alien == 1:
+        alien = Alien(ai_settings, screen)
+    elif tipo_alien == 2:
+        alien = Alien2(ai_settings, screen)
+    else:
+        alien = Alien3(ai_settings, screen)
+
     alien_width = alien.rect.width
     alien.x = alien_width + 2 * alien_width * alien_number
     alien.rect.x = alien.x

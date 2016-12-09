@@ -10,6 +10,7 @@ from button import Button
 from scoreboard import Scoreboard
 import game_functions as gf
 
+
 def run_game():
     # Inicializa o jogo e cria um objeto para a tela
     pygame.init()
@@ -18,7 +19,7 @@ def run_game():
     pygame.display.set_caption("Alien Invasion")
 
     # Cria o botão Play
-    play_button = Button(ai_settings, screen, "Jogar")
+    play_button = Button(ai_settings, screen, "Playar")
 
     # Cria uma instância para armazenar dados estatísticos do jogo e cria painel de pontuação
     stats = GameStats(ai_settings)
@@ -27,6 +28,7 @@ def run_game():
     # Cria uma nave, um grupo de projéteis e um grupo de alienígenas
     ship = Ship(ai_settings, screen)
     bullets = Group()
+    # alien_bullets = Group()
     aliens = Group()
 
     # Cria a frota de alienígenas

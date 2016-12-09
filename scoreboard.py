@@ -5,6 +5,7 @@ from pygame.sprite import Group
 
 from ship import Ship
 
+
 class Scoreboard():
     """
     Uma classe para mostrar informações sobre pontuação
@@ -22,7 +23,7 @@ class Scoreboard():
         self.stats = stats
 
         # Configurações de fonte para as informações de pontuação
-        self.text_color = (30, 30, 30)
+        self.text_color = (0, 255, 0)
         self.font = pygame.font.SysFont(None, 48)
 
         # Prepara a imagem da pontuação inicial

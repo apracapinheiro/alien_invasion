@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-import  pygame.font
+import pygame.font
 
 
 class Button():
@@ -13,7 +13,7 @@ class Button():
 
         # Define as dimensões e as propriedades do botão
         self.witdth, self.height = 200, 50
-        self.button_color = (0, 255, 0)
+        self.button_color = (0, 0, 255)
         self.text_color = (255, 255, 255)
         self.font = pygame.font.SysFont(None, 48)
 
