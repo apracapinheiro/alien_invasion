@@ -18,7 +18,7 @@ class Alien(Sprite):
         self.ai_settings = ai_settings
 
         # Carrega a imagem do alienígena e define seu atributo rect
-        self.image = pygame.image.load('images/alien_yellow.png')
+        self.image = pygame.image.load('images/alien_yellow.png').convert_alpha()
         # self.image = pygame.image.load('images/alien.bmp')
         self.rect = self.image.get_rect()
 
@@ -64,7 +64,7 @@ class Alien2(Alien):
     def __init__(self, ai_settings, screen):
         super().__init__(ai_settings, screen)
         # Carrega a imagem do alienígena e define seu atributo rect
-        self.image = pygame.image.load('images/alien_red.png')
+        self.image = pygame.image.load('images/alien_red.png').convert_alpha()
         self.pontuacao = 70
 
 
@@ -75,5 +75,5 @@ class Alien3(Alien):
     def __init__(self, ai_settings, screen):
         super().__init__(ai_settings, screen)
         # Carrega a imagem do alienígena e define seu atributo rect
-        self.image = pygame.image.load('images/alien_green.png')
+        self.image = pygame.image.load('images/alien_green.png').convert_alpha()
         self.pontuacao = 50
