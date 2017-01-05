@@ -12,9 +12,12 @@ import game_functions as gf
 
 
 def run_game():
+    # Inicializa com som estereo de 16 bitas a 44 Khz
+    pygame.mixer.pre_init(44100, 16, 2, 1024 * 4)
     # Inicializa o jogo e cria um objeto para a tela
     pygame.init()
     ai_settings = Settings()
+    pygame.mixer.set_num_channels(8)
     screen = pygame.display.set_mode((ai_settings.screen_width, ai_settings.screen_height))
     pygame.display.set_caption("Alien Invasion")
 

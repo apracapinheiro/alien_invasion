@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import pygame
+from pygame.locals import *
 from pygame.sprite import Sprite
 
 
@@ -16,6 +17,8 @@ class Alien(Sprite):
         super(Alien, self).__init__()
         self.screen = screen
         self.ai_settings = ai_settings
+        self.som_explosao = pygame.mixer.Sound("bounce.wav")
+
 
         # Carrega a imagem do alienígena e define seu atributo rect
         self.image = pygame.image.load('images/alien_yellow.png').convert_alpha()
@@ -55,6 +58,14 @@ class Alien(Sprite):
             return True
         elif self.rect.left <= 0:
             return True
+
+    def play_explosion(self):
+        channel = self.som_explosao.play()
+
+        if channel is not None:
+            # Obtem os volumes da esquerda e da direita
+            left, right = 0.5, 0.5
+            channel.set_volume(left, right)
 
 
 class Alien2(Alien):
