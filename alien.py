@@ -17,7 +17,8 @@ class Alien(Sprite):
         super(Alien, self).__init__()
         self.screen = screen
         self.ai_settings = ai_settings
-        self.som_explosao = pygame.mixer.Sound("bounce.wav")
+        self.som_explosao = pygame.mixer.Sound("BallBounce.wav")
+        # self.som_explosao = pygame.mixer.Sound("bounce.wav")
 
 
         # Carrega a imagem do alienígena e define seu atributo rect

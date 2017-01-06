@@ -12,6 +12,8 @@ class Ship(Sprite):
         super(Ship, self).__init__()
         self.screen = screen
         self.ai_settings = ai_settings
+        self.som_tiro = pygame.mixer.Sound("Zap.wav")
+        self.explosion = pygame.mixer.Sound("ship_explosion.wav")
 
         # Carrega a imagem da espaçonave e obtém seu rect
         self.image = pygame.image.load('images/ship_color.png').convert_alpha()
@@ -58,3 +60,20 @@ class Ship(Sprite):
         :return:
         """
         self.center = self.screen_rect.centerx
+
+    def shot_sound(self):
+        channel = self.som_tiro.play()
+
+        if channel is not None:
+            # Obtem os volumes da esquerda e da direita
+            left, right = 0.5, 0.5
+            channel.set_volume(left, right)
+
+
+    def ship_explosion(self):
+        channel = self.explosion.play()
+
+        if channel is not None:
+            # Obtem os volumes da esquerda e da direita
+            left, right = 0.6, 0.6
+            channel.set_volume(left, right)

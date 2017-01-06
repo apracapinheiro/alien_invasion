@@ -193,6 +193,7 @@ def fire_bullet(ai_settings, screen, ship, bullets):
     # Cria um novo projétil e o adiciona ao grupo de projéteis
     if len(bullets) < ai_settings.bullets_allowed:
         new_bullet = Bullet(ai_settings, screen, ship)
+        ship.shot_sound()
         bullets.add(new_bullet)
 
 
@@ -337,6 +338,7 @@ def ship_hit(ai_settings, screen, stats, sb, ship, aliens, bullets):
         # Atualiza o painel de pontuações
         sb.prep_ships()
         # Faz uma pausa
+        ship.ship_explosion()
         sleep(0.5)
         # Esvazia a list de alienígenas e de projéteis
         aliens.empty()

@@ -19,7 +19,7 @@ def run_game():
     ai_settings = Settings()
     pygame.mixer.set_num_channels(8)
     screen = pygame.display.set_mode((ai_settings.screen_width, ai_settings.screen_height))
-    pygame.display.set_caption("Alien Invasion")
+    pygame.display.set_caption("Alien Invasion by Falcao")
 
     # Cria o botão Play
     play_button = Button(ai_settings, screen, "Playar")
